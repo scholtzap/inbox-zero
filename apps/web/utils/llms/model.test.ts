@@ -281,19 +281,19 @@ describe("Models", () => {
       };
 
       vi.mocked(env).DEFAULT_LLM_PROVIDER = "vertex";
-      vi.mocked(env).DEFAULT_LLM_MODEL = "gemini-2.5-flash";
+      vi.mocked(env).DEFAULT_LLM_MODEL = "gemini-3-flash-preview";
       vi.mocked(env).GOOGLE_VERTEX_PROJECT = "test-vertex-project";
       vi.mocked(env).GOOGLE_VERTEX_LOCATION = "us-central1";
 
       const result = getModel(userAi);
 
       expect(result.provider).toBe(Provider.VERTEX);
-      expect(result.modelName).toBe("gemini-2.5-flash");
+      expect(result.modelName).toBe("gemini-3-flash-preview");
       expect(result.model).toBeDefined();
       expect(result.providerOptions).toEqual({
         vertex: {
           thinkingConfig: {
-            thinkingBudget: 128,
+            thinkingLevel: "minimal",
           },
         },
       });
@@ -311,7 +311,7 @@ describe("Models", () => {
       };
 
       vi.mocked(env).DEFAULT_LLM_PROVIDER = "vertex";
-      vi.mocked(env).DEFAULT_LLM_MODEL = "gemini-2.5-flash";
+      vi.mocked(env).DEFAULT_LLM_MODEL = "gemini-3-flash-preview";
       vi.mocked(env).GOOGLE_VERTEX_PROJECT = "test-vertex-project";
       vi.mocked(env).GOOGLE_VERTEX_LOCATION = "us-central1";
       vi.mocked(env).GOOGLE_VERTEX_CLIENT_EMAIL =
@@ -323,7 +323,7 @@ describe("Models", () => {
       expect(result.providerOptions).toEqual({
         vertex: {
           thinkingConfig: {
-            thinkingBudget: 128,
+            thinkingLevel: "minimal",
           },
         },
       });
@@ -355,7 +355,7 @@ describe("Models", () => {
       const result = getModel(userAi);
 
       expect(result.provider).toBe(Provider.VERTEX);
-      expect(result.modelName).toBe("gemini-3-flash");
+      expect(result.modelName).toBe("gemini-3-flash-preview");
       expect(result.providerOptions).toEqual({
         vertex: {
           thinkingConfig: {
@@ -606,7 +606,7 @@ describe("Models", () => {
       };
 
       vi.mocked(env).DEFAULT_LLM_PROVIDER = "vertex";
-      vi.mocked(env).DEFAULT_LLM_MODEL = "gemini-2.5-flash";
+      vi.mocked(env).DEFAULT_LLM_MODEL = "gemini-3-flash-preview";
       vi.mocked(env).GOOGLE_VERTEX_PROJECT = undefined;
 
       expect(() => getModel(userAi)).toThrow(
